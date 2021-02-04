@@ -1,10 +1,11 @@
 import React from 'react';
 
-function App() {
+//Import components
+import SearchForm from './components/SearchForm';
+
+const App = () => {
   return (
-    <div>
-      <h2>Hello world</h2>
-    </div>
+    <SearchForm />
   );
 }
 
