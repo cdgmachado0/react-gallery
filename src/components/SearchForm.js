@@ -3,16 +3,6 @@ import React, { Component } from 'react';
 
 class SearchForm extends Component {
 
-    // state = {
-    //     search: ''
-    // };
-
-    // handleSearch = (e) => {
-    //     e.preventDefault();
-    //     this.setState({
-    //         search: this.query
-    //     });
-    // } 
 
     handleSearch = (e) => {
         e.preventDefault();
