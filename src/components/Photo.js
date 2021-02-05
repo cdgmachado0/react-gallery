@@ -1,12 +1,11 @@
 import React from 'react';
-// import { Consumer } from 'react-router-dom';
 
 
 const Photo = (props) => {
 
     return (
         <li>
-            <img src={props.photo} alt="" />
+            <img src={props.source} alt="" />
         </li>
     );
     

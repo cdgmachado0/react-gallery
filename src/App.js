@@ -18,10 +18,25 @@ class App extends Component {
       "https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg",
       "https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg",
       "https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg"
-    ]
+    ],
+    images2: ''
   }
 
-  key = apiKey;
+
+  componentDidMount() {
+    this.getPhotos();
+  }
+
+  getPhotos = (query) => {
+    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
+    fetch(url)
+      .then(res => res.json())
+      .then(resData => {
+        let photos = resData.photos.photo.map(photo => `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`);
+        this.setState({ images2: photos });
+      })
+      .catch(err => console.log('Error fetching and parsing data', err));
+  }
 
   render() {
     return (
@@ -30,7 +45,7 @@ class App extends Component {
           <SearchForm />
           <Nav />
           <div className='photo-container'>
-          <Route path="/cats" render={ () => <PhotosList photo={this.state.images[0]} /> } />
+          <Route path="/cats" render={ () => <PhotosList photos={this.state.images2} /> } />
           <Route path="/dogs" render={ () => <PhotosList photo={this.state.images[1]} /> } />
           <Route path="/computers" render={ () => <PhotosList photo={this.state.images[2]} /> } />
           </div>

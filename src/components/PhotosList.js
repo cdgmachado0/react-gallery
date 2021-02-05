@@ -8,7 +8,7 @@ const PhotosList = (props) => {
         <div className="photo-container">
             <h2>Results</h2>
             <ul>
-            <Photo photo={props.photo} />
+            {props.photos.map(url => <Photo source={url} />)}
             {/* <!-- Not Found --> */}
             <NotFound />
             </ul>
