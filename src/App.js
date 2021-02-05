@@ -11,6 +11,11 @@ class App extends Component {
   
   key = apiKey;
 
+  // handleSearch = (e, query) => {
+  //   e.preventDefault();
+    
+  // } 
+
 
   render() {
     return (

@@ -3,16 +3,24 @@ import React, { Component } from 'react';
 
 class SearchForm extends Component {
 
-    state = {
-        search: ''
-    };
+    // state = {
+    //     search: ''
+    // };
+
+    // handleSearch = (e) => {
+    //     e.preventDefault();
+    //     this.setState({
+    //         search: this.query
+    //     });
+    // } 
 
     handleSearch = (e) => {
         e.preventDefault();
-        this.setState({
-            search: this.query
-        });
-    } //working on getting the query from the search up to the App component
+        let searchQuery = this.query.value;
+        let path = `/${searchQuery}`;
+        // this.props.history.push(path);
+        console.log(path);
+      } 
 
     render() {
         return (
