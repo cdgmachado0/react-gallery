@@ -27,12 +27,17 @@ class App extends Component {
     this.getPhotos();
   }
 
-  getPhotos = (query) => {
+  getPhotos = () => {
     let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
     fetch(url)
       .then(res => res.json())
       .then(resData => {
-        let photos = resData.photos.photo.map(photo => `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`);
+        let photos = resData.photos.photo.map(photo => {
+          return {
+            url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
+            id: photo.id
+          };
+        });
         this.setState({ images2: photos });
       })
       .catch(err => console.log('Error fetching and parsing data', err));
