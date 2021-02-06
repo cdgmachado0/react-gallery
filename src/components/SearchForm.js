@@ -4,15 +4,13 @@ import React, { Component } from 'react';
 class SearchForm extends Component {
 
 
-
     handleSearch = (e) => {
         e.preventDefault();
         let searchQuery = this.query.value;
         let path = `/${searchQuery}`;
-        return path;
+        // this.props.history.push(path);
+        console.log(path);
       } 
-
-  
 
     render() {
         return (
@@ -32,5 +30,3 @@ class SearchForm extends Component {
 
 export default SearchForm;
 
-
-// (e) => this.props.history.push(this.handleSearch(e))

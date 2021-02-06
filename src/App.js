@@ -5,7 +5,6 @@ import {
   Route
 } from 'react-router-dom';
 
-
 //Import components
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
@@ -24,15 +23,12 @@ class App extends Component {
   }
 
 
-  // componentDidMount() {
-  //   this.getPhotos();
-  // }
+  componentDidMount() {
+    this.getPhotos();
+  }
 
-  //try some provider/consumer so the PhotosList fetches the data after its mounted
-  //call getPhotos from inside PhotoList's componentDidMount()
-
-  getPhotos = (query) => {
-    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
+  getPhotos = () => {
+    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
     fetch(url)
       .then(res => res.json())
       .then(resData => {
@@ -47,26 +43,19 @@ class App extends Component {
       .catch(err => console.log('Error fetching and parsing data', err));
   }
 
-  // handleSearch = (e, searchQuery) => {
-  //   e.preventDefault();
-  //   let path = `/${searchQuery}`;
-  //   this.props.history.push(path);
-  //   console.log(path);
-  // } 
-
   render() {
     return (
-      <BrowserRouter> 
+      <BrowserRouter>
         <div className='container'>
           <SearchForm />
-          <Nav get={this.getPhotos} />
+          <Nav />
           <div className='photo-container'>
           <Route path="/cats" render={ () => <PhotosList photos={this.state.images2} /> } />
-          {/* <Route path="/dogs" render={ () => <PhotosList photo={this.state.images2} /> } /> */}
-          {/* <Route path="/computers" render={ () => <PhotosList photo={this.state.images2} /> } /> */}
+          <Route path="/dogs" render={ () => <PhotosList photo={this.state.images[1]} /> } />
+          <Route path="/computers" render={ () => <PhotosList photo={this.state.images[2]} /> } />
           </div>
         </div>
-      </BrowserRouter> 
+      </BrowserRouter>
     );
   }
 
