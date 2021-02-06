@@ -27,8 +27,8 @@ class App extends Component {
     this.getPhotos();
   }
 
-  getPhotos = () => {
-    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`;
+  getPhotos = (query) => {
+    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     fetch(url)
       .then(res => res.json())
       .then(resData => {
@@ -48,7 +48,7 @@ class App extends Component {
       <BrowserRouter>
         <div className='container'>
           <SearchForm />
-          <Nav />
+          <Nav get={ this.getPhotos }/>
           <div className='photo-container'>
           <Route path="/cats" render={ () => <PhotosList photos={this.state.images2} /> } />
           <Route path="/dogs" render={ () => <PhotosList photo={this.state.images[1]} /> } />
