@@ -5,13 +5,14 @@ const SearchAppContext = React.createContext();
 
 export class Provider extends Component {
     
-    state = {
-        images2: ''
+      state = {
+        images2: '',
+        fetchFlag: false
       }
     
     
       componentDidMount() {
-        this.getPhotos();
+        this.getPhotos('cats');
       }
     
       getPhotos = (query) => {
@@ -25,15 +26,19 @@ export class Provider extends Component {
                 id: photo.id
               };
             });
-            this.setState({ images2: photos });
+            this.setState({
+              images2: photos,
+              fetchFlag: true
+            });
           })
-          .catch(err => console.log('Error fetching and parsing data menol', err));
+          .catch(err => console.log('Error fetching and parsing data', err)); //still managing to get the fetch work with no componentDidMount()
       }
 
       render() {
           return (
               <SearchAppContext.Provider value={{
                   images: this.state.images2,
+                  fetchFlag: this.state.fetchFlag,
                   action: {
                       get: this.getPhotos
                   }
