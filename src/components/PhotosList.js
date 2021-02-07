@@ -4,23 +4,23 @@ import NotFound from './NotFound';
 
 
 const PhotosList = (props) => {
-
+    let photos = [];
+    if (props.images) {
+        photos = props.images
+        .map(photo => 
+            <Photo 
+                source={photo.url} 
+                key={photo.id}
+            />)
+    }
 
     return (
         <div className="photo-container">
             <h2>Results</h2>
             <ul> 
-            {props.images.map(photoObj => 
-                <Photo 
-                source={photoObj.url} 
-                key={photoObj.id}
-            />)}
-            {/* <!-- Not Found --> */}
-            <NotFound />
+            { photos.length > 0 ? photos : <NotFound /> }
             </ul>
-        </div>
-                
-            
+        </div>       
     );
 }
 

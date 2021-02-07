@@ -51,10 +51,7 @@ class App extends Component {
           <SearchForm get={this.getPhotos} />
           <Nav get={this.getPhotos} />
           <div className='photo-container'>
-          <Route path="/cats" render={ () => <PhotosList images={ this.state.images } /> } />
-          <Route path="/dogs" render={ () => <PhotosList images={ this.state.images } /> } />
-          <Route path="/sports" render={ () => <PhotosList images={ this.state.images } /> } />
-          {/* <Route render={ () => <PhotosList images={ this.state.images } /> } /> */}
+          <Route path="/:search" render={ () => <PhotosList images={ this.state.images } /> } />
           </div>
         </div>
       </BrowserRouter>
