@@ -25,12 +25,6 @@ class App extends Component {
   //   this.getPhotos('cats');
   // }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.fetchFlag === false) {
-  //     this.setState({ fetchFlag: true });
-  //   } 
-  // }
-
   
 
   getPhotos = (query) => {
@@ -54,10 +48,9 @@ class App extends Component {
       .catch(err => console.log('Error fetching and parsing data', err)); //still managing to get the fetch work with no componentDidMount()
   }
 
-  flagToFalse = () => {
+  resetFlag = () => {
     this.setState({ fetchFlag: false });
   }
-
 
 
   render() {
@@ -67,8 +60,8 @@ class App extends Component {
           <SearchForm 
             get={this.getPhotos}
             images={this.state.images}
-            // flag={this.state.fetchFlag}
-            // setFlagToFalse={this.flagToFalse}
+            flag={this.state.fetchFlag}
+            resetFlag={this.resetFlag}
           />
           <Nav get={this.getPhotos} />
           <div className='photo-container'>

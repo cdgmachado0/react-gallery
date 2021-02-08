@@ -10,21 +10,17 @@ class SearchForm extends Component {
         e.preventDefault();
         let searchQuery = this.query.value;
         this.props.get(searchQuery)
-            .then(() => console.log('hi'));
-           
+            .then(() => {
+                let path = '';
+                if (this.props.flag) {
+                    path = `/${searchQuery}`;
+                } else {
+                    path = '/not-found';
+                }
+                this.props.history.push(path);
+                this.props.resetFlag();
+            });
         e.currentTarget.reset();
-        
-       
-        // while (typeof prom !== 'object') {}
-        // console.log(this.props.flag);
-        let path = `/${searchQuery}`;
-        this.props.history.push(path);
-        
-        
-        
-        
-        // if there aren't any matches, redirect to NotFound component and add /notfound to url
-        //check if it's possible to access the promise a fulfilled, do a while loop to read th fulfilment of the promise, and change flag to continue with code
       } 
 
     render() {
