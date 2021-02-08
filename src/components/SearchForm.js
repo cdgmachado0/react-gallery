@@ -10,7 +10,12 @@ class SearchForm extends Component {
         e.preventDefault();
         let searchQuery = this.query.value;
         this.props.get(searchQuery)
-            .then(() => console.log('hi'));
+            .then(() => {
+                if (this.props.flags) {
+                    let path = `/${searchQuery}`;
+                    this.props.history.push(path);
+                }
+            });
            
         e.currentTarget.reset();
         
