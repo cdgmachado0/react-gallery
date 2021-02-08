@@ -54,6 +54,10 @@ class App extends Component {
       .catch(err => console.log('Error fetching and parsing data', err)); //still managing to get the fetch work with no componentDidMount()
   }
 
+  flagToFalse = () => {
+    this.setState({ fetchFlag: false });
+  }
+
 
 
   render() {
