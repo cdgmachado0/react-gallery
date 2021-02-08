@@ -11,8 +11,14 @@ export class Provider extends Component {
       }
     
     
-      componentDidMount() {
-        this.getPhotos('cats');
+      // componentDidMount() {
+      //   this.getPhotos('cats');
+      // }
+
+      componentDidUpdate(prevProps, prevState) {
+        if (prevState.fetchFlag === false) {
+          this.setState({ fetchFlag: true });
+        } 
       }
     
       getPhotos = (query) => {
@@ -37,11 +43,11 @@ export class Provider extends Component {
       render() {
           return (
               <SearchAppContext.Provider value={{
-                  images: this.state.images2,
-                  fetchFlag: this.state.fetchFlag,
-                  action: {
-                      get: this.getPhotos
-                  }
+                  // images: this.state.images2,
+                  flag: this.state.fetchFlag
+                  // action: {
+                  //     get: this.getPhotos
+                  // }
               }}>
                   {this.props.children}
               </SearchAppContext.Provider>

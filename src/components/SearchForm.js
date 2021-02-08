@@ -4,15 +4,27 @@ import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
 
-
+    
 
     handleSearch = (e) => {
         e.preventDefault();
         let searchQuery = this.query.value;
-        this.props.get(searchQuery);
+        this.props.get(searchQuery)
+            .then(() => console.log('hi'));
+           
         e.currentTarget.reset();
+        
+       
+        // while (typeof prom !== 'object') {}
+        // console.log(this.props.flag);
         let path = `/${searchQuery}`;
         this.props.history.push(path);
+        
+        
+        
+        
+        // if there aren't any matches, redirect to NotFound component and add /notfound to url
+        //check if it's possible to access the promise a fulfilled, do a while loop to read th fulfilment of the promise, and change flag to continue with code
       } 
 
     render() {

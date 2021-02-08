@@ -7,11 +7,11 @@ const PhotosList = (props) => {
     let photos = [];
     if (props.images) {
         photos = props.images
-        .map(photo => 
-            <Photo 
-                source={photo.url} 
-                key={photo.id}
-            />)
+            .map(photo => 
+                <Photo 
+                    source={photo.url} 
+                    key={photo.id}
+                />)
     }
 
     return (

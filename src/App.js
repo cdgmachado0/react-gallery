@@ -16,17 +16,26 @@ class App extends Component {
 
   state = {
     images: '',
-    fetchFlag: false
+    fetchFlag: false,
+    per_page: 24 
   }
 
 
-  componentDidMount() {
-    this.getPhotos('cats');
-  }
+  // componentDidMount() {
+  //   this.getPhotos('cats');
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.fetchFlag === false) {
+  //     this.setState({ fetchFlag: true });
+  //   } 
+  // }
+
+  
 
   getPhotos = (query) => {
-    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
-    fetch(url)
+    let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${this.state.per_page}&format=json&nojsoncallback=1`;
+    return fetch(url)
       .then(res => res.json())
       .then(resData => {
         let photos = resData.photos.photo.map(photo => {
@@ -36,19 +45,31 @@ class App extends Component {
           };
         });
         this.setState({
-          images: photos,
-          fetchFlag: true
+          images: photos
         });
+        if (photos.length > 0) {
+          this.setState({ fetchFlag: true });
+        }
       })
       .catch(err => console.log('Error fetching and parsing data', err)); //still managing to get the fetch work with no componentDidMount()
   }
+
+  flagToFalse = () => {
+    this.setState({ fetchFlag: false });
+  }
+
 
 
   render() {
     return (
       <BrowserRouter>
         <div className='container'>
-          <SearchForm get={this.getPhotos} />
+          <SearchForm 
+            get={this.getPhotos}
+            images={this.state.images}
+            // flag={this.state.fetchFlag}
+            // setFlagToFalse={this.flagToFalse}
+          />
           <Nav get={this.getPhotos} />
           <div className='photo-container'>
           <Route path="/:search" render={ () => <PhotosList images={ this.state.images } /> } />
