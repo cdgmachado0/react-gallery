@@ -69,9 +69,7 @@ class App extends Component {
           <div className='photo-container'>
             <Switch>
               <Route exact path="/not-found" component={ NotFound } />
-
-              <Route path="/:search" render={ (match) => <PhotosList images={this.state.images} search={match.match.params.search} get={this.getPhotos} /> } />
-
+              <Route path="/:search" render={ (match) => <PhotosList images={ this.state.images } search={match.match.params.search} get={this.getPhotos} /> } />
             </Switch>
           </div>
         </div>
