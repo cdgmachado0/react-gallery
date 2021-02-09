@@ -1,6 +1,5 @@
 import React from 'react';
 import Photo from './Photo';
-import NotFound from './NotFound';
 
 
 const PhotosList = (props) => {
@@ -15,12 +14,12 @@ const PhotosList = (props) => {
     }
 
     return (
-        <div className="photo-container">
+        <React.Fragment>
             <h2>Results</h2>
             <ul> 
-            { photos.length > 0 ? photos : <NotFound /> }
+                { photos }
             </ul>
-        </div>       
+        </React.Fragment>
     );
 }
 

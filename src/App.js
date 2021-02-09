@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 //Import components
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
 import PhotosList from './components/PhotosList';
+import NotFound from './components/NotFound';
 import apiKey from './config';
 
 
@@ -65,7 +67,10 @@ class App extends Component {
           />
           <Nav get={this.getPhotos} />
           <div className='photo-container'>
-          <Route path="/:search" render={ () => <PhotosList images={ this.state.images } /> } />
+            <Switch>
+              <Route exact path="/not-found" component={ NotFound } />
+              <Route path="/:search" render={ () => <PhotosList images={ this.state.images } /> } />
+            </Switch>
           </div>
         </div>
       </BrowserRouter>
