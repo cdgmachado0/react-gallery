@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
+import NotFound from './NotFound';
 
 
 class PhotosList extends Component {
@@ -40,12 +41,12 @@ class PhotosList extends Component {
     
 
     return (
-        <React.Fragment>
+        <div className="photo-container">
             <h2>Results</h2>
             <ul> 
                 { this.state.photos }
             </ul>
-        </React.Fragment>
+        </div>       
     );
     }
 }
