@@ -65,7 +65,7 @@ class App extends Component {
             flag={this.state.fetchFlag}
             resetFlag={this.resetFlag}
           />
-          <Nav />
+          <Nav get={this.getPhotos} />
           <div className='photo-container'>
             <Switch>
               <Route exact path="/not-found" component={ NotFound } />
