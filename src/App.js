@@ -69,7 +69,11 @@ class App extends Component {
           <div className='photo-container'>
             <Switch>
               <Route exact path="/not-found" component={ NotFound } />
+<<<<<<< HEAD
               <Route path="/:search" render={ (match) => <PhotosList images={this.state.images} search={match.match.params.search} get={this.getPhotos} /> } />
+=======
+              <Route path="/:search" render={ () => <PhotosList images={ this.state.images } /> } />
+>>>>>>> parent of 0d54777 (Got to work when pasting the URL, but I stil have to try it out with the other components to know I didn't brake anythig)
             </Switch>
           </div>
         </div>
