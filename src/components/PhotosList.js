@@ -43,10 +43,11 @@ class PhotosList extends Component {
         <React.Fragment>
             <h2>Results</h2>
             <ul> 
-                { photos }
+                { this.state.photos }
             </ul>
         </React.Fragment>
     );
+    }
 }
 
 
