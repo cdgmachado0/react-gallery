@@ -20,6 +20,7 @@ class PhotosList extends Component {
 
 
     componentDidMount() {
+        console.log('hi');
         let photos = [];
         this.props.get(this.props.search)
             .then(() => {
@@ -36,7 +37,6 @@ class PhotosList extends Component {
         // let photos = [];
     // const { search } = this.props.match.match.params;
     // console.log(this.props.match);
-
     
     return (
         <React.Fragment>
