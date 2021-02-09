@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 //Import components
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
 import PhotosList from './components/PhotosList';
+import NotFound from './components/NotFound';
 import apiKey from './config';
 
 
