@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 
 
+<<<<<<< HEAD
 class PhotosList extends Component {
     
 
@@ -40,15 +41,27 @@ class PhotosList extends Component {
     // console.log(this.props.match);
     
 
+=======
+const PhotosList = (props) => {
+    let photos = [];
+    if (props.images) {
+        photos = props.images
+            .map(photo => 
+                <Photo 
+                    source={photo.url} 
+                    key={photo.id}
+                />)
+    }
+
+>>>>>>> parent of 0d54777 (Got to work when pasting the URL, but I stil have to try it out with the other components to know I didn't brake anythig)
     return (
         <div className="photo-container">
             <h2>Results</h2>
             <ul> 
-                { this.state.photos }
+                { photos }
             </ul>
         </div>       
     );
-    }
 }
 
 
