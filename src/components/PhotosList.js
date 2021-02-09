@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Photo from './Photo';
 
 
-<<<<<<< HEAD
 class PhotosList extends Component {
     
 
@@ -39,19 +38,7 @@ class PhotosList extends Component {
     // const { search } = this.props.match.match.params;
     // console.log(this.props.match);
     
-=======
-const PhotosList = (props) => {
-    let photos = [];
-    if (props.images) {
-        photos = props.images
-            .map(photo => 
-                <Photo 
-                    source={photo.url} 
-                    key={photo.id}
-                />)
-    }
 
->>>>>>> parent of 0d54777 (Got to work when pasting the URL, but I stil have to try it out with the other components to know I didn't brake anythig)
     return (
         <React.Fragment>
             <h2>Results</h2>
