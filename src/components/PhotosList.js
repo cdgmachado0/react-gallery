@@ -15,17 +15,32 @@ class PhotosList extends PureComponent {
     //             />)
     // }
 
-    // state = {
-    //     photos: ''
-    // };
+    state = {
+        photos: ''
+    };
+
+    componentDidMount() {
+        const search = this.props.search;
+        this.props.get(search)
+            .then(data => {
+                return data.map(photo => 
+                    <Photo 
+                        source={photo.url} 
+                        key={photo.id}
+                    />);
+            })
+            .then(photos => {
+                this.setState({ photos });
+            });
+    }
 
 //************************************************************ */
 
 
-    constructor(props) {
-        super(props);
-        const search = this.props.search;
-        const photos = this.props.get(search);
+    // constructor(props) {
+    //     super(props);
+    //     const search = this.props.search;
+    //     const photos = this.props.get(search);
 
     
 
@@ -43,7 +58,7 @@ class PhotosList extends PureComponent {
             //             />);
             //     }
             // });
-        console.log(photos);
+        // console.log(photos);
             
 //************************************************************ */
 
@@ -57,7 +72,7 @@ class PhotosList extends PureComponent {
         //             />);
         //         this.state = { photos };
         //     });
-    }
+    // }
 
     
 
@@ -108,7 +123,7 @@ class PhotosList extends PureComponent {
             <div className="photo-container">
                 <h2>Results</h2>
                 <ul> 
-                    { 'hi' }
+                    { this.state.photos }
                 </ul>
             </div>       
         );
