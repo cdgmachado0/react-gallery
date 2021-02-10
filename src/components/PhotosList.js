@@ -1,26 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Photo from './Photo';
 
 
 
-class PhotosList extends PureComponent {
-    // let photos = [];
-    // if (props.images) {
-    //     photos = props.images
-    //         .map(photo => 
-    //             <Photo 
-    //                 source={photo.url} 
-    //                 key={photo.id}
-    //             />)
-    // }
+class PhotosList extends Component {
 
     state = {
-        photos: []
+        photos: [],
+        flag: false
     };
 
+//For when the URL is pasted directly
     componentDidMount() {
-        const search = this.props.search;
+        this.renderPhoto();
+    }
+
+
+    renderPhoto = () => { //has to be call from another component lifecycle
+        const { search } = this.props.match.params;
         this.props.get(search)
             .then(data => {
                 if (data.length) {
@@ -35,6 +33,10 @@ class PhotosList extends PureComponent {
                 }
             });
     }
+
+//Need one when submitting the form
+
+//Another one when a NavLink is pressed
 
 //************************************************************ */
 
@@ -118,8 +120,6 @@ class PhotosList extends PureComponent {
         //         }
         //     }); 
 
-            
-        // console.log(this.props.photoComp);
 
         return (
             <div className="photo-container">

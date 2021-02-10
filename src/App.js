@@ -55,6 +55,7 @@ class App extends Component {
 
 //************************************************************ */
 
+
   getPhotos = async (query) => {
     let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${this.state.per_page}&format=json&nojsoncallback=1`;
     let data = await fetch(url)
@@ -66,12 +67,6 @@ class App extends Component {
             id: photo.id
           };
         });
-        this.setState({
-          images: photos
-        });
-        if (photos.length > 0) {
-          this.setState({ fetchFlag: true });
-        }
         return photos;
       })
       .catch(err => console.log('Error fetching and parsing data', err)); 
@@ -122,7 +117,7 @@ class App extends Component {
           <div className='photo-container'>
             <Switch> 
               <Route exact path="/not-found" component={ NotFound } />
-              <Route path="/:search" render={ (match) => <PhotosList photoComp={this.photo_components} images={ this.state.images } search={match.match.params.search} flag={this.state.fetchFlag} resetFlag={this.resetFlag} get={this.getPhotos} /> } />
+              <Route path="/:search" render={ () => <PhotosList  get={this.getPhotos} /> } />
             </Switch>
           </div>
         </div>
