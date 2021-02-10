@@ -16,21 +16,23 @@ class PhotosList extends PureComponent {
     // }
 
     state = {
-        photos: ''
+        photos: []
     };
 
     componentDidMount() {
         const search = this.props.search;
         this.props.get(search)
             .then(data => {
-                return data.map(photo => 
-                    <Photo 
-                        source={photo.url} 
-                        key={photo.id}
-                    />);
-            })
-            .then(photos => {
-                this.setState({ photos });
+                if (data.length) {
+                    let photos = data.map(photo => 
+                        <Photo 
+                            source={photo.url} 
+                            key={photo.id}
+                        />);
+                    this.setState({ photos });
+                } else {
+                    this.props.history.push('/not-found');
+                }
             });
     }
 
