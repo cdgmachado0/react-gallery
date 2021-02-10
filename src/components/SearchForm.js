@@ -6,22 +6,33 @@ class SearchForm extends Component {
 
     
 
+    // handleSearch = (e) => {
+    //     e.preventDefault();
+    //     let searchQuery = this.query.value;
+    //     this.props.get(searchQuery)
+    //         .then(() => {
+    //             let path = '';
+    //             if (this.props.flag) {
+    //                 path = `/${searchQuery}`;
+    //             } else {
+    //                 path = '/not-found';
+    //             }
+    //             this.props.history.push(path);
+    //             this.props.resetFlag();
+    //         });
+    //     e.currentTarget.reset();
+    //   } 
+
     handleSearch = (e) => {
         e.preventDefault();
         let searchQuery = this.query.value;
-        this.props.get(searchQuery)
-            .then(() => {
-                let path = '';
-                if (this.props.flag) {
-                    path = `/${searchQuery}`;
-                } else {
-                    path = '/not-found';
-                }
-                this.props.history.push(path);
-                this.props.resetFlag();
-            });
+        let path = '';
+        path = `/${searchQuery}`;
+        this.props.history.push(path);
         e.currentTarget.reset();
       } 
+
+    
 
     render() {
         return (
