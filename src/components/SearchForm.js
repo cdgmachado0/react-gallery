@@ -13,12 +13,12 @@ class SearchForm extends Component {
         this.props.get(searchQuery)
             .then(data => {
                 if (data.length) {
-                    let photos = data.map(photo => 
+                    let images = data.map(photo => 
                         <Photo 
                             source={photo.url} 
                             key={photo.id}
                         />);
-                    this.props.set(photos);
+                    this.props.set(images);
                     this.props.history.push(`/${searchQuery}`);
                 } else {
                     this.props.history.push('/not-found');

@@ -10,7 +10,6 @@ import SearchForm from './components/SearchForm';
 import Nav from './components/Nav';
 import PhotosList from './components/PhotosList';
 import NotFound from './components/NotFound';
-import Photo from './components/Photo';
 import apiKey from './config';
 
 
@@ -24,34 +23,6 @@ class App extends Component {
     photo_components: ''
   }
 
-
-  // componentDidMount() {
-  //   this.getPhotos('cats');
-  // }
-
-  
-
-  // getPhotos = (query) => {
-  //   let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${this.state.per_page}&format=json&nojsoncallback=1`;
-  //   return fetch(url)
-  //     .then(res => res.json())
-  //     .then(resData => {
-  //       let photos = resData.photos.photo.map(photo => {
-  //         return {
-  //           url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
-  //           id: photo.id
-  //         };
-  //       });
-  //       this.setState({
-  //         images: photos
-  //       });
-  //       if (photos.length > 0) {
-  //         this.setState({ fetchFlag: true });
-  //       }
-  //       return photos;
-  //     })
-  //     .catch(err => console.log('Error fetching and parsing data', err)); //still managing to get the fetch work with no componentDidMount()
-  // }
 
 //************************************************************ */
 
@@ -81,26 +52,6 @@ class App extends Component {
     this.setState({ fetchFlag: true });
   }
 
-  // setSearchQuery = (query) => {
-  //   this.setState({ searchQuery: query });
-  // }
-
-  // mapPhotos = (search) => {
-  //   let photos = '';
-  //   this.getPhotos(search)
-  //     .then(() => {
-  //       if (this.state.fetchFlag) {
-  //         photos = this.state.images.map(photo => 
-  //           <Photo 
-  //               source={photo.url} 
-  //               key={photo.id}
-  //           />);
-  //       } else if (this.state.fetchFlag === false) {
-  //         console.log('hi'); 
-  //       }
-  //     });
-  //   return photos;
-  // }
 
   setImages = (images) => {
     this.setState({ images });
@@ -124,7 +75,7 @@ class App extends Component {
           <div className='photo-container'>
             <Switch> 
               <Route exact path="/not-found" component={ NotFound } />
-              <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} />  } />
+              <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} set={this.setImages} get2={() => this.getPhotos()} />  } />
             </Switch>
           </div>
         </div>

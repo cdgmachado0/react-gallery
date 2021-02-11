@@ -8,12 +8,12 @@ class Nav extends Component {
     handleSearch = (query) => {
         this.props.get(query)
             .then(data => {
-                let photos = data.map(photo => 
+                let images = data.map(photo => 
                     <Photo 
                         source={photo.url} 
                         key={photo.id}
                     />);
-                this.props.set(photos);
+                this.props.set(images);
                 this.props.history.push(`/${query}`);
             });
       } 
