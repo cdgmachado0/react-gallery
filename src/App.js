@@ -78,7 +78,7 @@ class App extends Component {
 
 
   resetFlag = () => {
-    this.setState({ fetchFlag: false });
+    this.setState({ fetchFlag: true });
   }
 
   // setSearchQuery = (query) => {
@@ -106,6 +106,8 @@ class App extends Component {
     this.setState({ images });
   }
 
+  
+
 
   render() {
     return (
@@ -118,11 +120,11 @@ class App extends Component {
             resetFlag={this.resetFlag}
             set={this.setImages}
           />
-          <Nav />
+          <Nav get={this.getPhotos} set={this.setImages} />
           <div className='photo-container'>
             <Switch> 
               <Route exact path="/not-found" component={ NotFound } />
-              <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} /> } />
+              <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} />  } />
             </Switch>
           </div>
         </div>

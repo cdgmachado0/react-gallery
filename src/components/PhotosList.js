@@ -16,22 +16,7 @@ class PhotosList extends Component {
         this.renderPhotos();
     }
 
-    // getSnapshotBeforeUpdate(prevProps, prevState) {
-    //     if (prevState.flag === false) {
-    //         this.setState({ flag: false });
-    //     }
-    // }
-
-    // componentDidUpdate() {
-    //     if (this.state.flag === true) {
-    //         this.renderPhotos();
-    //         this.setState({ flag: false });
-    //     }
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-        
-    // }
+    
 
 
     renderPhotos = () => { 
@@ -139,12 +124,12 @@ class PhotosList extends Component {
         const { images } = this.props;
 
         return (
-            <div className="photo-container">
+            <React.Fragment>
                 <h2>Results</h2>
                 <ul> 
                     { images.length === 0 ? this.state.photos : images }
                 </ul>
-            </div>       
+            </React.Fragment>    
         );
     }
 }

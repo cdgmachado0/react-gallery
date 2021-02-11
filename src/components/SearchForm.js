@@ -30,6 +30,9 @@ class SearchForm extends Component {
     // handleSearch = (e) => {
     //     e.preventDefault();
     //     let searchQuery = this.query.value;
+
+    //     this.props.resetFlag();
+
     //     let path = '';
     //     path = `/${searchQuery}`;
     //     this.props.history.push(path);
