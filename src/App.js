@@ -102,6 +102,10 @@ class App extends Component {
   //   return photos;
   // }
 
+  setImages = (images) => {
+    this.setState({ images });
+  }
+
 
   render() {
     return (
@@ -112,12 +116,13 @@ class App extends Component {
             images={this.state.images}
             flag={this.state.fetchFlag}
             resetFlag={this.resetFlag}
+            set={this.setImages}
           />
           <Nav />
           <div className='photo-container'>
             <Switch> 
               <Route exact path="/not-found" component={ NotFound } />
-              <Route path="/:search" render={ () => <PhotosList  get={this.getPhotos} /> } />
+              <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} /> } />
             </Switch>
           </div>
         </div>

@@ -13,11 +13,28 @@ class PhotosList extends Component {
 
 //For when the URL is pasted directly
     componentDidMount() {
-        this.renderPhoto();
+        this.renderPhotos();
     }
 
+    // getSnapshotBeforeUpdate(prevProps, prevState) {
+    //     if (prevState.flag === false) {
+    //         this.setState({ flag: false });
+    //     }
+    // }
 
-    renderPhoto = () => { //has to be call from another component lifecycle
+    // componentDidUpdate() {
+    //     if (this.state.flag === true) {
+    //         this.renderPhotos();
+    //         this.setState({ flag: false });
+    //     }
+    // }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+        
+    // }
+
+
+    renderPhotos = () => { 
         const { search } = this.props.match.params;
         this.props.get(search)
             .then(data => {
@@ -119,13 +136,13 @@ class PhotosList extends Component {
         //             this.props.history.push('/not-found');
         //         }
         //     }); 
-
+        const { images } = this.props;
 
         return (
             <div className="photo-container">
                 <h2>Results</h2>
                 <ul> 
-                    { this.state.photos }
+                    { images.length === 0 ? this.state.photos : images }
                 </ul>
             </div>       
         );
