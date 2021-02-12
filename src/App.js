@@ -27,6 +27,7 @@ class App extends Component {
   componentDidMount() {
     let query = this.props.history.location.pathname;
     query = query.slice(1);
+
     if (query.length > 0) {
       this.getPhotos(query)
         .then(images => {
@@ -61,12 +62,12 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <SearchForm get={this.getPhotos}/>
-        <Nav get={this.getPhotos} />
+        <SearchForm getPhotos={this.getPhotos}/>
+        <Nav getPhotos={this.getPhotos} />
         <div className='photo-container'>
           <Switch> 
             <Route exact path="/not-found" component={ NotFound } />
-            <Route path="/:search" render={ () => <PhotosList images={this.state.images} get={this.getPhotos} />  } />
+            <Route path="/:search" render={ () => <PhotosList images={this.state.images} />  } />
           </Switch>
         </div>
       </div>

@@ -9,7 +9,7 @@ class SearchForm extends Component {
         const searchQuery = this.query.value;
         let path = '';
         path = `/${searchQuery}`;
-        this.props.get(searchQuery)
+        this.props.getPhotos(searchQuery)
             .then(images => {
                 if (images.length > 0) {
                     this.props.history.push(path);
