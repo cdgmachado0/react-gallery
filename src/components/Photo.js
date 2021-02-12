@@ -7,8 +7,7 @@ const Photo = (props) => {
         <li>
             <img src={props.source} alt="" />
         </li>
-    );
-    
+    );  
  }
 
 

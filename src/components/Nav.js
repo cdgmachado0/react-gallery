@@ -1,24 +1,19 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import Photo from './Photo';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 
-class Nav extends Component {
-
+const Nav = (props) => {
     
-
-    render() {
-        return (
-            <nav className="main-nav">
-                <ul>
-                    <li onClick={ (e) => this.props.get(e.target.textContent.toLowerCase()) } ><NavLink to='/cats'>Cats</NavLink></li>
-                    <li onClick={ (e) => this.props.get(e.target.textContent.toLowerCase()) }><NavLink to='/dogs'>Dogs</NavLink></li>
-                    <li onClick={ (e) => this.props.get(e.target.textContent.toLowerCase()) }><NavLink to='/sports'>Sports</NavLink></li>
-                </ul>
-            </nav>
-        );
-    }
-}
+    return (
+        <nav className="main-nav">
+            <ul>
+                <li onClick={ (e) => props.get(e.target.textContent.toLowerCase()) } ><NavLink to='/cats'>Cats</NavLink></li>
+                <li onClick={ (e) => props.get(e.target.textContent.toLowerCase()) }><NavLink to='/dogs'>Dogs</NavLink></li>
+                <li onClick={ (e) => props.get(e.target.textContent.toLowerCase()) }><NavLink to='/sports'>Sports</NavLink></li>
+            </ul>
+        </nav>
+    );
+} 
 
 
-export default withRouter(Nav);
+export default Nav;

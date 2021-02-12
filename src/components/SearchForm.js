@@ -1,47 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Photo from './Photo';
 
 
 class SearchForm extends Component {
-
-    
-
-    // handleSearch = (e) => {
-    //     e.preventDefault();
-    //     let searchQuery = this.query.value;
-    //     this.props.get(searchQuery)
-    //         .then(data => {
-    //             if (data.length) {
-    //                 let images = data.map(photo => 
-    //                     <Photo 
-    //                         source={photo.url} 
-    //                         key={photo.id}
-    //                     />);
-    //                 this.props.set(images);
-    //                 this.props.history.push(`/${searchQuery}`);
-    //             } else {
-    //                 this.props.history.push('/not-found');
-    //             }
-    //         });
-    //     e.currentTarget.reset();
-    //   } 
-
-    // handleSearch = (e) => {
-    //     e.preventDefault();
-    //     let searchQuery = this.query.value;
-    //     console.log(searchQuery);
-        
-    //     this.props.renderPhotos(searchQuery)
-            
-
-            // let path = '';
-            // path = `/${searchQuery}`;
-            // this.props.history.push(path);
-    //         e.currentTarget.reset();
-
-        
-    //   } 
 
       handleSearch = (e) => {
         e.preventDefault()
@@ -49,14 +10,16 @@ class SearchForm extends Component {
         let path = '';
         path = `/${searchQuery}`;
         this.props.get(searchQuery)
-            .then(() => {
-                this.props.history.push(path);
+            .then(images => {
+                if (images.length > 0) {
+                    this.props.history.push(path);
+                } else {
+                    this.props.history.push('/not-found');
+                }
             });
-        
         e.currentTarget.reset();
       }
 
-    
 
     render() {
         return (
@@ -68,9 +31,7 @@ class SearchForm extends Component {
                     <path d="M0 0h24v24H0z" fill="none"/>
                     </svg>
                 </button>
-            </form>
-                    
-                
+            </form>       
         );
     }
 }

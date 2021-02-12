@@ -6,33 +6,6 @@ import Photo from './Photo';
 
 class PhotosList extends Component {
 
-    
-    // componentDidMount() {
-    //     this.props.renderPhotos(this.props.match.params.search);
-    // }
-
-    
-
-
-    // renderPhotos = () => { 
-    //     const { search } = this.props.match.params;
-    //     this.props.get(search)
-    //         .then(data => {
-    //             if (data.length) {
-    //                 let images = data.map(photo => 
-    //                     <Photo 
-    //                         source={photo.url} 
-    //                         key={photo.id}
-    //                     />);
-    //                 this.props.set(images);
-    //             } else {
-    //                 this.props.history.push('/not-found');
-    //             }
-    //         });
-    // }
-
-    
-
     render() {
        
         const { images } = this.props;
