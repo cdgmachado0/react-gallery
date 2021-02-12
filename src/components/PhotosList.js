@@ -6,39 +6,51 @@ import Photo from './Photo';
 
 class PhotosList extends Component {
 
-    componentDidMount() {
-        this.renderPhotos();
-    }
+    
+    // componentDidMount() {
+    //     this.props.renderPhotos(this.props.match.params.search);
+    // }
 
     
-    renderPhotos = () => { 
-        const { search } = this.props.match.params;
-        this.props.get(search)
-            .then(data => {
-                if (data.length) {
-                    let images = data.map(photo => 
-                        <Photo 
-                            source={photo.url} 
-                            key={photo.id}
-                        />);
-                    this.props.set(images);
-                } else {
-                    this.props.history.push('/not-found');
-                }
-            });
-    }
 
+
+    // renderPhotos = () => { 
+    //     const { search } = this.props.match.params;
+    //     this.props.get(search)
+    //         .then(data => {
+    //             if (data.length) {
+    //                 let images = data.map(photo => 
+    //                     <Photo 
+    //                         source={photo.url} 
+    //                         key={photo.id}
+    //                     />);
+    //                 this.props.set(images);
+    //             } else {
+    //                 this.props.history.push('/not-found');
+    //             }
+    //         });
+    // }
+
+    
 
     render() {
-        let { images } = this.props;
+       
+        const { images } = this.props;
+        let photos = [];
 
-        // this.renderPhotos();
+        if (images.length > 0) {
+            photos = images.map(photo => 
+                <Photo 
+                    source={photo.url} 
+                    key={photo.id}
+                />);
+        }
 
         return (
             <React.Fragment>
                 <h2>Results</h2>
                 <ul> 
-                    { images }
+                    { photos }
                 </ul>
             </React.Fragment>    
         );

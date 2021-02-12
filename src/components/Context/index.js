@@ -15,11 +15,11 @@ export class Provider extends Component {
       //   this.getPhotos('cats');
       // }
 
-      componentDidUpdate(prevProps, prevState) {
-        if (prevState.fetchFlag === false) {
-          this.setState({ fetchFlag: true });
-        } 
-      }
+      // componentDidUpdate(prevProps, prevState) {
+      //   if (prevState.fetchFlag === false) {
+      //     this.setState({ fetchFlag: true });
+      //   } 
+      // }
     
       getPhotos = (query) => {
         let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;

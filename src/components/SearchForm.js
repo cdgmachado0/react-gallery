@@ -7,37 +7,54 @@ class SearchForm extends Component {
 
     
 
-    handleSearch = (e) => {
-        e.preventDefault();
-        let searchQuery = this.query.value;
-        this.props.get(searchQuery)
-            .then(data => {
-                if (data.length) {
-                    let images = data.map(photo => 
-                        <Photo 
-                            source={photo.url} 
-                            key={photo.id}
-                        />);
-                    this.props.set(images);
-                    this.props.history.push(`/${searchQuery}`);
-                } else {
-                    this.props.history.push('/not-found');
-                }
-            });
-        e.currentTarget.reset();
-      } 
+    // handleSearch = (e) => {
+    //     e.preventDefault();
+    //     let searchQuery = this.query.value;
+    //     this.props.get(searchQuery)
+    //         .then(data => {
+    //             if (data.length) {
+    //                 let images = data.map(photo => 
+    //                     <Photo 
+    //                         source={photo.url} 
+    //                         key={photo.id}
+    //                     />);
+    //                 this.props.set(images);
+    //                 this.props.history.push(`/${searchQuery}`);
+    //             } else {
+    //                 this.props.history.push('/not-found');
+    //             }
+    //         });
+    //     e.currentTarget.reset();
+    //   } 
 
     // handleSearch = (e) => {
     //     e.preventDefault();
     //     let searchQuery = this.query.value;
+    //     console.log(searchQuery);
+        
+    //     this.props.renderPhotos(searchQuery)
+            
 
-    //     this.props.resetFlag();
+            // let path = '';
+            // path = `/${searchQuery}`;
+            // this.props.history.push(path);
+    //         e.currentTarget.reset();
 
-    //     let path = '';
-    //     path = `/${searchQuery}`;
-    //     this.props.history.push(path);
-    //     e.currentTarget.reset();
+        
     //   } 
+
+      handleSearch = (e) => {
+        e.preventDefault()
+        const searchQuery = this.query.value;
+        let path = '';
+        path = `/${searchQuery}`;
+        this.props.get(searchQuery)
+            .then(() => {
+                this.props.history.push(path);
+            });
+        
+        e.currentTarget.reset();
+      }
 
     
 
