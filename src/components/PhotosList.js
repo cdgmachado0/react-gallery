@@ -6,10 +6,12 @@ import Photo from './Photo';
 
 class PhotosList extends Component {
 
+    
+
     render() {
         const { images } = this.props;
         let photos = [];
-        
+
         if (images.length > 0) {
             photos = images.map(photo => 
                 <Photo 
@@ -17,8 +19,9 @@ class PhotosList extends Component {
                     key={photo.id}
                 />);
         }
-
-        return (
+        // this.props.location.state = photos; 
+        // console.log(this.props.location); 
+        return (                          
             <React.Fragment>
                 <h2>Results</h2>
                 <ul> 
