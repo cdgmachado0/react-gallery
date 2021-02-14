@@ -63,14 +63,16 @@ class App extends Component {
     let images = await fetch(url)
       .then(res => res.json())
       .then(resData => {
-        let images = resData.photos.photo.map(photo => {
-          return {
-            url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
-            id: photo.id
-          };
-        });
-        this.setState({ images });
-        return images;
+        if (resData.photos) {
+          let images = resData.photos.photo.map(photo => {
+            return {
+              url: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
+              id: photo.id
+            };
+          });
+          this.setState({ images });
+          return images;
+        }
       })
       .catch(err => console.log('Error fetching and parsing data', err)); 
     return images;
