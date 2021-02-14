@@ -19,8 +19,7 @@ class PhotosList extends Component {
                     key={photo.id}
                 />);
         }
-        // this.props.location.state = photos; 
-        // console.log(this.props.location); 
+
         return (                          
             <React.Fragment>
                 <h2>Results</h2>
