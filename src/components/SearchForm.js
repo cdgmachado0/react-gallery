@@ -6,10 +6,11 @@ class SearchForm extends Component {
 
       handleSearch = (e) => {
         e.preventDefault()
+        this.props.isLoading()
         const searchQuery = this.query.value;
         let path = '';
         path = `/${searchQuery}`;
-        this.props.getPhotos(searchQuery)
+        const res = this.props.getPhotos(searchQuery)
             .then(images => {
                 if (images.length > 0) {
                     this.props.history.push(path);
@@ -17,6 +18,18 @@ class SearchForm extends Component {
                     this.props.history.push('/not-found');
                 }
             });
+
+
+        // const isLoading = <p>Loading...</p>;
+        // console.log(2);
+        // while (!res) {
+        //     let i = 0;
+        //     console.log(i);
+        //     i++
+        // }
+
+
+
         e.currentTarget.reset();
       }
 

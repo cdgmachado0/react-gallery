@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   Route,
-  Switch,
   withRouter
 } from 'react-router-dom';
 
@@ -19,7 +18,8 @@ import apiKey from './config';
 class App extends Component {
 
   state = {
-    images: ''
+    images: '',
+    loading: true
   }
 
 
@@ -52,11 +52,15 @@ class App extends Component {
               id: photo.id
             };
           });
-          this.setState({ images });
+          this.setState({
+            images,
+            loading: false
+          });
           return images;
         }
       })
       .catch(err => console.log('Error fetching and parsing data', err)); 
+      console.log(1);
     return images;
   }
 
@@ -68,18 +72,25 @@ class App extends Component {
       }
     }
 
+    changeLoading = () => {
+      this.setState({ loading: true });
+
+    }
+
   
 
   render() {
     return (
       <div className='container'>
-        <SearchForm getPhotos={this.getPhotos}/>
+        <SearchForm getPhotos={this.getPhotos} isLoading={this.changeLoading}/>
         <Nav getPhotos={this.getPhotos} />
         <div className='photo-container'>
-          <Switch> 
-            <Route exact path="/not-found" component={ NotFound } />
-            <Route path='/:search' render={ () => <PhotosList images={this.state.images} />  } />
-          </Switch>
+          <Route exact path="/not-found" component={ NotFound } />
+          {
+            (this.state.loading) 
+              ? <p>Loading...</p> 
+              : <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+          }
         </div>
       </div>
     );
@@ -87,6 +98,6 @@ class App extends Component {
 
 }
 
-
+// && this.props.history.location.pathname !== "/"
 
 export default withRouter(App);
