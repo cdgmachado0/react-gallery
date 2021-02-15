@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-
-const Photo = (props) => {
-
+const Photo = ({ source }) => {
     return (
         <li>
-            <img src={props.source} alt="" />
+            <img src={source} alt="" />
         </li>
     );  
  }
+
+ 
+ Photo.propTypes = {
+     source: PropTypes.string
+ };
 
 
 export default Photo;

@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 class SearchForm extends Component {
 
-      handleSearch = (e) => {
-        e.preventDefault()
-        this.props.isLoading()
+    static propTypes = {
+        getPhotos: PropTypes.func,
+        isLoading: PropTypes.func,
+        history: PropTypes.object,
+    }
+
+
+    handleSearch = (e) => {
+        const {
+            getPhotos,
+            isLoading,
+            history
+        } = this.props;
+
+        e.preventDefault();
+        isLoading();
         const searchQuery = this.query.value;
         let path = '';
         path = `/${searchQuery}`;
-        this.props.getPhotos(searchQuery)
+        getPhotos(searchQuery)
             .then(images => {
                 if (images.length > 0) {
-                    this.props.history.push(path);
+                    history.push(path);
                 } else {
-                    this.props.history.push('/not-found');
+                    history.push('/not-found');
                 }
             });
         e.currentTarget.reset();
-      }
+    }
 
     render() {
         return (

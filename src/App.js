@@ -4,6 +4,7 @@ import {
   withRouter,
   Switch
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 //Import components
 import SearchForm from './components/SearchForm';
@@ -17,35 +18,40 @@ import apiKey from './config';
 
 
 class App extends Component {
-
   state = {
     images: '',
     loading: true
   }
 
+  static propTypes = {
+    history: PropTypes.object,
+    location: PropTypes.object
+  }
+
 
   componentDidMount() {
-    let query = this.props.history.location.pathname;
+    const { history } = this.props;
+    let query = history.location.pathname;
     query = query.slice(1);
 
     if (query.length > 0) {
       this.getPhotos(query)
         .then(images => {
           if (images.length <= 0) {
-            this.props.history.push('/not-found');
+            history.push('/not-found');
           }
         });
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      let query = this.props.location.pathname;
+    const { location } = this.props;
+    if (location.pathname !== prevProps.location.pathname) {
+      let query = location.pathname;
       query = query.slice(1);
       this.getPhotos(query);
     }
   }
-
 
   getPhotos = async (query) => {
     let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
@@ -79,7 +85,10 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <SearchForm getPhotos={this.getPhotos} isLoading={this.changeLoading}/>
+        <SearchForm 
+          getPhotos={this.getPhotos} 
+          isLoading={this.changeLoading}
+        />
         <Nav getPhotos={this.getPhotos} />
         <div className='photo-container'>
           {

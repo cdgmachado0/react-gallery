@@ -1,11 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Photo from './Photo';
 
 
-
-const PhotosList = (props) => {
-    const { images } = props;
+const PhotosList = ({ images }) => {
     let photos = [];
 
     if (images.length > 0) {
@@ -25,6 +24,11 @@ const PhotosList = (props) => {
         </React.Fragment> 
     );  
 }
+
+
+PhotosList.propTypes = {
+    images: PropTypes.array
+};
 
 
 export default withRouter(PhotosList);
