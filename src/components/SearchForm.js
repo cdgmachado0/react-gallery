@@ -18,18 +18,6 @@ class SearchForm extends Component {
                     this.props.history.push('/not-found');
                 }
             });
-
-
-        // const isLoading = <p>Loading...</p>;
-        // console.log(2);
-        // while (!res) {
-        //     let i = 0;
-        //     console.log(i);
-        //     i++
-        // }
-
-
-
         e.currentTarget.reset();
       }
 

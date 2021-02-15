@@ -6,14 +6,7 @@ import Photo from './Photo';
 
 class PhotosList extends Component {
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (this.props.location.pathname !== prevProps.location.pathname) {
-    //         // console.log(prevState);
-    //     }
-    //     // console.log('this.props: ', this.props);
-    //     // console.log('prevProps: ', prevProps);
-
-    // }
+    
     
 
     render() {

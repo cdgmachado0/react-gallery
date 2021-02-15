@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   Route,
-  withRouter
+  withRouter,
+  Switch
 } from 'react-router-dom';
 
 //Import components
@@ -60,7 +61,6 @@ class App extends Component {
         }
       })
       .catch(err => console.log('Error fetching and parsing data', err)); 
-      console.log(1);
     return images;
   }
 
@@ -80,17 +80,28 @@ class App extends Component {
   
 
   render() {
+
+
     return (
       <div className='container'>
         <SearchForm getPhotos={this.getPhotos} isLoading={this.changeLoading}/>
         <Nav getPhotos={this.getPhotos} />
         <div className='photo-container'>
-          <Route exact path="/not-found" component={ NotFound } />
+        
           {
-            (this.state.loading) 
+            (this.state.loading && this.props.history.location.pathname !== "/") 
               ? <p>Loading...</p> 
-              : <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+              : 
+              
+              <React.Fragment>
+              <Switch>
+              <Route exact path="/not-found" component={ NotFound } />
+              <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+              </Switch>
+              </React.Fragment>
+              
           }
+          
         </div>
       </div>
     );
@@ -101,3 +112,20 @@ class App extends Component {
 // && this.props.history.location.pathname !== "/"
 
 export default withRouter(App);
+
+
+// (this.state.loading && this.props.history.location.pathname !== "/") 
+//               ? <p>Loading...</p> 
+//               : <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+
+
+// () => {
+//   if (this.state.loading && this.props.history.location.pathname !== "/") {
+//     return <p>Loading...</p>; 
+//   } else {
+//     return (
+//       <Route exact path="/not-found" component={ NotFound } /> ||
+//       <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+//     );
+//   }
+// }
