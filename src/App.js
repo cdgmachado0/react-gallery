@@ -83,6 +83,7 @@ class App extends Component {
 
   
   render() {
+    const { history } = this.props;
     return (
       <div className='container'>
         <SearchForm 
@@ -92,7 +93,7 @@ class App extends Component {
         <Nav getPhotos={this.getPhotos} />
         <div className='photo-container'>
           {
-            (this.state.loading && this.props.history.location.pathname !== "/") 
+            (this.state.loading && history.location.pathname !== "/") 
               ? <p>Loading...</p> 
               : 
               <React.Fragment>
