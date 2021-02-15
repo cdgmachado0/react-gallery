@@ -21,7 +21,6 @@ class SearchForm extends Component {
         e.currentTarget.reset();
       }
 
-
     render() {
         return (
             <form className="search-form" onSubmit={ this.handleSearch }>

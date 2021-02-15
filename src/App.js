@@ -38,7 +38,13 @@ class App extends Component {
     }
   }
 
-
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      let query = this.props.location.pathname;
+      query = query.slice(1);
+      this.getPhotos(query);
+    }
+  }
 
 
   getPhotos = async (query) => {
@@ -64,21 +70,12 @@ class App extends Component {
     return images;
   }
 
-    componentDidUpdate(prevProps) {
-      if (this.props.location.pathname !== prevProps.location.pathname) {
-        let query = this.props.location.pathname;
-        query = query.slice(1);
-        this.getPhotos(query);
-      }
-    }
 
-    changeLoading = () => {
-      this.setState({ loading: true });
-
-    }
+  changeLoading = () => {
+    this.setState({ loading: true });
+  }
 
   
-
   render() {
     return (
       <div className='container'>
@@ -92,16 +89,14 @@ class App extends Component {
               <React.Fragment>
                 <Switch>
                   <Route exact path="/not-found" component={ NotFound } />
-                  <Route path='/:search' render={ () => <PhotosList images={this.state.images} isLoading={this.changeLoading} loading={this.state.loading} />  } />
+                  <Route path='/:search' render={ () => <PhotosList images={this.state.images} /> } />
                 </Switch>
               </React.Fragment>
-              
           } 
         </div>
       </div>
     );
   }
-
 }
 
 

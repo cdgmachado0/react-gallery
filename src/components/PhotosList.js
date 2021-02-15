@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Photo from './Photo';
 
 
 
-class PhotosList extends Component {
+const PhotosList = (props) => {
+    const { images } = props;
+    let photos = [];
 
-    
-    
-
-    render() {
-        const { images } = this.props;
-        let photos = [];
-        
-        if (images.length > 0) {
-            photos = images.map(photo => 
-                <Photo 
-                    source={photo.url} 
-                    key={photo.id}
-                />);
-        }
-
-        return (      
-            <React.Fragment>
-                <h2>Results</h2>
-                <ul> 
-                    { photos }
-                </ul>
-            </React.Fragment> 
-        );
+    if (images.length > 0) {
+        photos = images.map(photo => 
+            <Photo 
+                source={photo.url} 
+                key={photo.id}
+            />);
     }
+
+    return (      
+        <React.Fragment>
+            <h2>Results</h2>
+            <ul> 
+                { photos }
+            </ul>
+        </React.Fragment> 
+    );  
 }
 
 
